@@ -33,6 +33,9 @@ dependencies {
     // json
     implementation'com.fasterxml.jackson.core:jackson-databind:2.12.0'
 
+    // yaml
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2'
+
     // picocli
     implementation 'info.picocli:picocli:4.6.1'
     annotationProcessor 'info.picocli:picocli-codegen:4.6.1'

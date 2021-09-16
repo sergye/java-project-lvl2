@@ -18,10 +18,19 @@ class DiffGeneratorTest {
             + "}";
 
     @Test
-    void getDiffTest() throws IOException {
+    void getDiffJsonTest() throws IOException {
 
         String file1 = "src/test/resources/file1.json";
         String file2 = "src/test/resources/file2.json";
+
+        assertEquals(DIFF, DiffGenerator.getDiff(file1, file2));
+    }
+
+    @Test
+    void getDiffYamlTest() throws IOException {
+
+        String file1 = "src/test/resources/file1.yaml";
+        String file2 = "src/test/resources/file2.yaml";
 
         assertEquals(DIFF, DiffGenerator.getDiff(file1, file2));
     }
