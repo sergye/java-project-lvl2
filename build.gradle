@@ -8,6 +8,7 @@
 plugins {
     id 'com.github.ben-manes.versions' version '0.39.0'
     id 'application'
+    id 'checkstyle'
 }
 
 group = 'hexlet.code'
@@ -27,8 +28,15 @@ repositories {
 }
 
 dependencies {
+    // json
+    implementation'com.fasterxml.jackson.core:jackson-databind:2.12.0'
+
+    // picocli
     implementation 'info.picocli:picocli:4.6.1'
     annotationProcessor 'info.picocli:picocli-codegen:4.6.1'
-    implementation'com.fasterxml.jackson.core:jackson-databind:2.12.0'
+
+    // tests
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 

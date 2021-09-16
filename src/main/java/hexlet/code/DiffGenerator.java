@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -12,16 +11,15 @@ import java.util.Map;
 
 public class DiffGenerator {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
-
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public static String getDiff(String filepath1, String filepath2) throws IOException {
         return getDiff("stylish", filepath1, filepath2);
     }
 
     public static String getDiff(String format, String filepath1, String filepath2) throws IOException {
-        Map<String, Object> file1 = mapper.readValue(new File(filepath1), Map.class);
-        Map<String, Object> file2 = mapper.readValue(new File(filepath2), Map.class);
+        Map<String, Object> file1 = MAPPER.readValue(new File(filepath1), Map.class);
+        Map<String, Object> file2 = MAPPER.readValue(new File(filepath2), Map.class);
 
         List<String> keys = new ArrayList<>(new HashSet<>() {{
             addAll(file1.keySet());
@@ -52,5 +50,4 @@ public class DiffGenerator {
     private static void addValue(StringBuilder diff, String sign, String key, String value) {
         diff.append(String.format("\n\t%s %s: %s", sign, key, value));
     }
-
 }
