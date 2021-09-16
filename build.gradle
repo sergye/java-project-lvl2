@@ -9,6 +9,8 @@ plugins {
     id 'com.github.ben-manes.versions' version '0.39.0'
     id 'application'
     id 'checkstyle'
+    id 'jacoco'
+    id 'com.adarshr.test-logger' version '3.0.0'
 }
 
 group = 'hexlet.code'
@@ -40,3 +42,27 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled true // coveralls plugin depends on xml format report
+        html.enabled true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['hexlet/code/App.class'
+                    ]
+            )
+        }))
+    }
+}
+
+testlogger {
+    showStandardStreams = true
+}

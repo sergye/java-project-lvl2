@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DiffGeneratorTest {
 
     private static final String DIFF = "{\n"
-            + "  - follow: false\n"
-            + "    host: hexlet.io\n"
-            + "  - proxy: 123.234.53.22\n"
-            + "  - timeout: 50\n"
-            + "  + timeout: 20\n"
-            + "  + verbose: true\n"
+            + "\t- follow: false\n"
+            + "\t  host: hexlet.io\n"
+            + "\t- proxy: 123.234.53.22\n"
+            + "\t- timeout: 50\n"
+            + "\t+ timeout: 20\n"
+            + "\t+ verbose: true\n"
             + "}";
 
     @Test
