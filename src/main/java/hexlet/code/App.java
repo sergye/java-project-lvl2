@@ -11,8 +11,9 @@ import picocli.CommandLine.Parameters;
         description = "Compares two configuration files and shows a difference.")
 public final class App implements Callable<Integer> {
 
-    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format",
-            defaultValue = "stylish")
+    @Option(names = {"-f", "--format"},
+            defaultValue = "stylish",
+            description = "output format [default: ${DEFAULT-VALUE}]")
     private String format;
 
     @Parameters(index = "0", paramLabel = "filepath1", description = "path to the first file")

@@ -26,7 +26,8 @@ public class Parser {
         return mapper;
     }
 
-    public static Map<String, Object> parseFile(File file) throws IOException {
+    public static Map<String, Object> parse(String filepath) throws IOException {
+        File file = new File(filepath);
         return getMapper(file.getPath()).readValue(file, Map.class);
     }
 
