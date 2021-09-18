@@ -7,4 +7,4 @@
 
 <a href="https://codeclimate.com/github/sergye/java-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/78536ed5de1b3389dd50/test_coverage" /></a>
 
-<a href="https://asciinema.org/a/rcKEHBBrbasYtKyNRmcnovZpu">See how it works</a>
+<a href="https://asciinema.org/a/NRj7xsEY1cU1tavNR2GC4NSHz">See how it works</a>
