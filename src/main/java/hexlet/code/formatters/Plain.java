@@ -1,6 +1,5 @@
 package hexlet.code.formatters;
 
-import java.util.Collection;
 import java.util.Map;
 import hexlet.code.DiffInfo;
 
@@ -16,7 +15,7 @@ public class Plain {
             switch (key.getValue()) {
                 case "added":
                     result.append("Property '").append(key.getKey()).append("' was added with value: ")
-                            .append(stringify(dataFile2.get(key.getKey()))).append("\n");
+                            .append(Stringifier.stringify(dataFile2.get(key.getKey()))).append("\n");
                     break;
                 case "deleted":
                     result.append("Property '").append(key.getKey()).append("' was removed\n");
@@ -25,20 +24,12 @@ public class Plain {
                     break;
                 case "changed":
                     result.append("Property '").append(key.getKey()).append("' was updated. From ")
-                            .append(stringify(dataFile1.get(key.getKey())))
-                            .append(" to ").append(stringify(dataFile2.get(key.getKey()))).append("\n");
+                            .append(Stringifier.stringify(dataFile1.get(key.getKey())))
+                            .append(" to ").append(Stringifier.stringify(dataFile2.get(key.getKey()))).append("\n");
                     break;
                 default: System.out.println("Unknown format");
             }
         }
-        return result.toString();
-    }
-
-    private static Object stringify(Object object) {
-        return object instanceof Object[] || object instanceof Collection || object instanceof Map
-                ? "[complex value]"
-                : object instanceof String
-                ? "'" + object + "'"
-                : object;
+        return result.toString().trim();
     }
 }

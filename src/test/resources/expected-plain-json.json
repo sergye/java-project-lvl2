@@ -1,0 +1,27 @@
+{
+  {
+  "field": "follow",
+  "before": false,
+  "after": null
+  },
+  {
+  "field": "host",
+  "before": "hexlet.io",
+  "after": "hexlet.io"
+  },
+  {
+  "field": "proxy",
+  "before": "123.234.53.22",
+  "after": null
+  },
+  {
+  "field": "timeout",
+  "before": 50,
+  "after": 20
+  },
+  {
+  "field": "verbose",
+  "before": null,
+  "after": true
+  }
+}
