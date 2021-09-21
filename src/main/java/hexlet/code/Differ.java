@@ -13,6 +13,11 @@ import java.lang.reflect.InvocationTargetException;
 public class Differ {
     private static List<Diff> diff = new ArrayList<>();
 
+    public static String generate(String file1, String file2)
+            throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        return generate(file1, file2, "stylish");
+    }
+
     public static String generate(String file1, String file2, String format)
             throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Map<String, Object> dataFile1 = Parser.parse(file1);

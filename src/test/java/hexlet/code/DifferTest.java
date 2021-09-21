@@ -33,6 +33,17 @@ class DifferTest {
     }
 
     @Test
+    void generateJsonTestWithoutFormat()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        String file1 = PATH + "file1-1.json";
+        String file2 = PATH + "file2-1.json";
+        String expected = getExpected(PATH + "expected-stylish-simple.txt");
+
+        assertEquals(expected, Differ.generate(file1, file2));
+    }
+
+    @Test
     void generate1YamlTest()
             throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
