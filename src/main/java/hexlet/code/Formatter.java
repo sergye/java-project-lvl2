@@ -10,24 +10,22 @@ import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Tools;
 
 public class Formatter {
-    private static String diffFormat;
     private static StringBuilder stringBuilder = new StringBuilder();
 
     public static String format(String format, List<Diff> diff)
             throws JsonProcessingException, NoSuchMethodException, IllegalAccessException, InvocationTargetException  {
-        diffFormat = format;
         switch (format) {
-            case "stylish": return getFormat(Stylish.class, diff);
-            case "plain": return getFormat(Plain.class, diff);
+            case "stylish": return getFormat(Stylish.class, diff, format);
+            case "plain": return getFormat(Plain.class, diff, format);
             case "json": return Json.getFormat(diff);
             default: return ("Unknown format! " + format);
         }
     }
 
-    private static <E extends Enum<E>> String getFormat(Class<E> formatter, List<Diff> diff)
+    private static <E extends Enum<E>> String getFormat(Class<E> formatter, List<Diff> diff, String format)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
-        Tools.getHeader(diffFormat, stringBuilder);
+        Tools.getHeader(format, stringBuilder);
 
         for (Diff property : diff) {
             E status = (E) Enum.valueOf(formatter, property.getStatus().toUpperCase());
@@ -36,7 +34,7 @@ public class Formatter {
             method.invoke(status, property, stringBuilder);
         }
 
-        String result = Tools.getEnding(diffFormat, stringBuilder);
+        String result = Tools.getEnding(format, stringBuilder);
         stringBuilder.setLength(0);
         diff.clear();
 
