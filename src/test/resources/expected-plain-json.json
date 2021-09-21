@@ -1,27 +1,32 @@
-{
+[
   {
-  "field": "follow",
+  "name": "follow",
+  "status": "deleted",
   "before": false,
   "after": null
   },
   {
-  "field": "host",
+  "name": "host",
+  "status": "unchanged",
   "before": "hexlet.io",
   "after": "hexlet.io"
   },
   {
-  "field": "proxy",
+  "name": "proxy",
+  "status": "deleted",
   "before": "123.234.53.22",
   "after": null
   },
   {
-  "field": "timeout",
+  "name": "timeout",
+  "status": "changed",
   "before": 50,
   "after": 20
   },
   {
-  "field": "verbose",
+  "name": "verbose",
+  "status": "added",
   "before": null,
   "after": true
   }
-}
+]

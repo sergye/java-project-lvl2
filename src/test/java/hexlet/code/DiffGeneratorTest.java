@@ -8,19 +8,22 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+import java.lang.reflect.InvocationTargetException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DifferTest {
     private static final String PATH = "src/test/resources/";
 
-    private static String getExpected(String pathFile) throws FileNotFoundException {
+    private static String getExpected(String pathFile)
+            throws FileNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Path path = Paths.get(pathFile).toAbsolutePath().normalize();
         return new BufferedReader(new FileReader(path.toFile())).lines().collect(Collectors.joining("\n"));
     }
 
     @Test
-    void getDiff1JsonTest() throws IOException {
+    void getDiff1JsonTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-1.json";
         String file2 = PATH + "file2-1.json";
@@ -30,7 +33,8 @@ class DifferTest {
     }
 
     @Test
-    void getDiff1YamlTest() throws IOException {
+    void getDiff1YamlTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-1.yaml";
         String file2 = PATH + "file2-1.yaml";
@@ -40,7 +44,8 @@ class DifferTest {
     }
 
     @Test
-    void getDiff2JsonTest() throws IOException {
+    void getDiff2JsonTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-2.json";
         String file2 = PATH + "file2-2.json";
@@ -50,7 +55,8 @@ class DifferTest {
     }
 
     @Test
-    void getDiff2YamlTest() throws IOException {
+    void getDiff2YamlTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-2.yaml";
         String file2 = PATH + "file2-2.yaml";
@@ -60,7 +66,8 @@ class DifferTest {
     }
 
     @Test
-    void getDiff1JsonPlainTest() throws IOException {
+    void getDiff1JsonPlainTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-2.json";
         String file2 = PATH + "file2-2.json";
@@ -70,7 +77,8 @@ class DifferTest {
     }
 
     @Test
-    void getDiff2JsonPlainTest() throws IOException {
+    void getDiff2JsonPlainTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-2.yaml";
         String file2 = PATH + "file2-2.yaml";
@@ -80,7 +88,8 @@ class DifferTest {
     }
 
     @Test
-    void getDiffJsonFormatTest() throws IOException {
+    void getDiffJsonFormatTest()
+            throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         String file1 = PATH + "file1-1.json";
         String file2 = PATH + "file2-1.json";

@@ -2,6 +2,7 @@ package hexlet.code;
 
 import java.util.concurrent.Callable;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
@@ -23,7 +24,7 @@ public final class App implements Callable<Integer> {
     private String filepath2;
 
     @Override
-    public Integer call() throws IOException {
+    public Integer call() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         System.out.println(Differ.getDiff(filepath1, filepath2, format));
         return 0;
     }

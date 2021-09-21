@@ -1,15 +1,20 @@
 package hexlet.code;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.lang.reflect.InvocationTargetException;
 
 public class Differ {
+    private static List<Diff> diff = new ArrayList<>();
 
-    public static String getDiff(String file1, String file2, String format) throws IOException {
+    public static String getDiff(String file1, String file2, String format)
+            throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Map<String, Object> dataFile1 = Parser.parse(file1);
         Map<String, Object> dataFile2 = Parser.parse(file2);
 
@@ -17,28 +22,29 @@ public class Differ {
                 .filter(dataFile2::containsKey)
                 .collect(Collectors.toSet());
 
-        Map<String, String> addedKeys = dataFile2.keySet().stream()
-                .filter(x -> !matchingKeys.contains(x))
-                .collect(Collectors.toMap(x -> x, y -> "added"));
+        dataFile2.entrySet().stream()
+                .filter(x -> !matchingKeys.contains(x.getKey()))
+                .forEach(x -> addToDiff(x.getKey(), "added", null,  x.getValue()));
 
-        Map<String, String> deletedKeys = dataFile1.keySet().stream()
-                .filter(x -> !matchingKeys.contains(x))
-                .collect(Collectors.toMap(x -> x, y -> "deleted"));
+        dataFile1.entrySet().stream()
+                .filter(x -> !matchingKeys.contains(x.getKey()))
+                .forEach(x -> addToDiff(x.getKey(), "deleted", x.getValue(), null));
 
-        Map<String, String> diff = new TreeMap<>();
-        diff.putAll(addedKeys);
-        diff.putAll(deletedKeys);
+        matchingKeys.stream()
+                .filter(x -> Objects.equals(dataFile1.get(x), dataFile2.get(x)))
+                .forEach(x -> addToDiff(x, "unchanged",  dataFile1.get(x), dataFile1.get(x)));
 
-        for (String key : matchingKeys) {
-            if (Objects.equals(dataFile1.get(key), dataFile2.get(key))) {
-                diff.put(key, "unchanged");
-            } else {
-                diff.put(key, "changed");
-            }
-        }
+        matchingKeys.stream()
+                .filter(x -> !Objects.equals(dataFile1.get(x), dataFile2.get(x)))
+                .forEach(x -> addToDiff(x, "changed", dataFile1.get(x), dataFile2.get(x)));
 
-        DiffInfo diffInfo = new DiffInfo(dataFile1, dataFile2, diff);
+        diff.sort(Comparator.comparing(Diff::getName));
 
-        return Formatter.format(format, diffInfo);
+        return Formatter.format(format, diff);
+    }
+
+    private static void addToDiff(String name, String status, Object before, Object after) {
+        Diff property = new Diff(name, status, before, after);
+        diff.add(property);
     }
 }
