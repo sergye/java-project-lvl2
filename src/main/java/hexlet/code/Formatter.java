@@ -20,7 +20,7 @@ public class Formatter {
             case "stylish": return getFormat(Stylish.class, diff);
             case "plain": return getFormat(Plain.class, diff);
             case "json": return Json.getFormat(diff);
-            default: return "Unknown out format";
+            default: return ("Unknown format! " + format);
         }
     }
 
