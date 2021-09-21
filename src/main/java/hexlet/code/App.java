@@ -25,7 +25,7 @@ public final class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        System.out.println(Differ.getDiff(filepath1, filepath2, format));
+        System.out.println(Differ.generate(filepath1, filepath2, format));
         return 0;
     }
 
