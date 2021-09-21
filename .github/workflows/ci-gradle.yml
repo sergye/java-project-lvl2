@@ -30,4 +30,4 @@ jobs:
       - run: ./cc-test-reporter format-coverage build/reports/jacoco/test/jacocoTestReport.xml --input-type jacoco
         env:
           JACOCO_SOURCE_PATH: src/main/java
-      - run: ./cc-test-reporter upload-coverage -r
+      - run: ./cc-test-reporter upload-coverage -r 71d6a7fd889059bf4d8e09efe8f05327c0d1de2db850d410bc2b069f22e5df57
