@@ -7,7 +7,7 @@ public enum Stylish {
         @Override
         public void appendProperty(Diff property, StringBuilder stringBuilder) {
             stringBuilder
-                    .append("\t").append("+ ")
+                    .append("  ").append("+ ")
                     .append(property.getName())
                     .append(": ")
                     .append(property.getAfter())
@@ -19,7 +19,7 @@ public enum Stylish {
         @Override
         public void appendProperty(Diff property, StringBuilder stringBuilder) {
             stringBuilder
-                    .append("\t")
+                    .append("  ")
                     .append("- ")
                     .append(property.getName())
                     .append(": ")
@@ -32,7 +32,7 @@ public enum Stylish {
         @Override
         public void appendProperty(Diff property, StringBuilder stringBuilder) {
             stringBuilder
-                    .append("\t")
+                    .append("  ")
                     .append("  ")
                     .append(property.getName())
                     .append(": ")
@@ -45,13 +45,13 @@ public enum Stylish {
         @Override
         public void appendProperty(Diff property, StringBuilder stringBuilder) {
             stringBuilder
-                    .append("\t")
+                    .append("  ")
                     .append("- ")
                     .append(property.getName())
                     .append(": ")
                     .append(property.getBefore())
                     .append("\n")
-                    .append("\t").append("+ ")
+                    .append("  ").append("+ ")
                     .append(property.getName())
                     .append(": ")
                     .append(property.getAfter())
