@@ -7,7 +7,8 @@ public enum Stylish {
         @Override
         public void appendProperty(Diff property, StringBuilder stringBuilder) {
             stringBuilder
-                    .append("  ").append("+ ")
+                    .append("  ")
+                    .append("+ ")
                     .append(property.getName())
                     .append(": ")
                     .append(property.getAfter())
