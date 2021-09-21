@@ -10,7 +10,7 @@ public enum Plain {
                     .append("Property '")
                     .append(property.getName())
                     .append("' was added with value: ")
-                    .append(Stringifier.stringify(property.getAfter()))
+                    .append(Tools.stringify(property.getAfter()))
                     .append("\n");
         }
     },
@@ -39,9 +39,9 @@ public enum Plain {
                     .append("Property '")
                     .append(property.getName())
                     .append("' was updated. From ")
-                    .append(Stringifier.stringify(property.getBefore()))
+                    .append(Tools.stringify(property.getBefore()))
                     .append(" to ")
-                    .append(Stringifier.stringify(property.getAfter()))
+                    .append(Tools.stringify(property.getAfter()))
                     .append("\n");
         }
     };
