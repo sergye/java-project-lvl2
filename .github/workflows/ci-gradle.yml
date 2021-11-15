@@ -32,4 +32,4 @@ jobs:
           JACOCO_SOURCE_PATH: src/main/java
       - run: ./cc-test-reporter upload-coverage
         env:
-            MY_SECRET: ${{ secrets.MY_SECRET }}
+          CC_TEST_REPORTER_ID: ${{ secrets.MY_SECRET }}
