@@ -1,3 +1,4 @@
+
 package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -5,23 +6,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 
 public class Parser {
 
-    private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
-    private static final ObjectMapper YAML_MAPPER = new ObjectMapper(new YAMLFactory());
+    public static Map<String, Object> parse(String contents, String type) throws IOException {
+        return getObjectMapper(type).readValue(contents, new TypeReference<>() {
+        });
+    }
 
-    public static Map<String, Object> parse(String filePath) throws IOException {
-        Path path = Paths.get(filePath);
-        if (filePath.endsWith("json")) {
-            return JSON_MAPPER.readValue(path.toFile(), new TypeReference<>() {
-            });
+    private static ObjectMapper getObjectMapper(String fileName) {
+        if (fileName.endsWith(".json")) {
+            return new ObjectMapper();
         } else {
-            return YAML_MAPPER.readValue(path.toFile(), new TypeReference<>() {
-            });
+            return new ObjectMapper(new YAMLFactory());
         }
     }
 }

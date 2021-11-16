@@ -12,17 +12,4 @@ public class Tools {
                 ? "'" + object + "'"
                 : object;
     }
-
-    public static void getHeader(String format, StringBuilder stringBuilder) {
-        if (format.equals("stylish")) {
-            stringBuilder.append("{\n");
-        }
-    }
-
-    public static String getEnding(String format, StringBuilder stringBuilder) {
-        if (format.equals("stylish")) {
-            stringBuilder.append("}");
-        }
-        return stringBuilder.toString().trim();
-    }
 }

@@ -1,52 +1,56 @@
 package hexlet.code.formatters;
 
 import hexlet.code.Diff;
+import java.util.List;
 
-public enum Plain {
-    ADDED {
-        @Override
-        public void appendProperty(Diff property, StringBuilder stringBuilder) {
-            stringBuilder
-                    .append("Property '")
-                    .append(property.getName())
-                    .append("' was added with value: ")
-                    .append(Tools.stringify(property.getAfter()))
-                    .append("\n");
+public class Plain {
+
+    public static String getFormat(List<Diff> diff) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Diff property : diff) {
+            switch (property.getStatus()) {
+                case "added":
+                    appendAddedProperty(property, stringBuilder);
+                    break;
+                case "deleted":
+                    appendDeletedProperty(property, stringBuilder);
+                    break;
+                case "changed":
+                    appendChangedProperty(property, stringBuilder);
+                    break;
+                default:
+                    stringBuilder.append("");
+            }
         }
-    },
+        return stringBuilder.toString().trim();
+    }
 
-    DELETED {
-        @Override
-        public void appendProperty(Diff property, StringBuilder stringBuilder) {
-            stringBuilder
-                    .append("Property '")
-                    .append(property.getName())
-                    .append("' was removed\n");
-        }
-    },
+    private static void appendAddedProperty(Diff property, StringBuilder stringBuilder) {
+        stringBuilder
+                .append("Property '")
+                .append(property.getName())
+                .append("' was added with value: ")
+                .append(Tools.stringify(property.getAfter()))
+                .append("\n");
+    }
 
-    UNCHANGED {
-        @Override
-        public void appendProperty(Diff property, StringBuilder stringBuilder) {
-            stringBuilder.append("");
-        }
-    },
+    private static void appendDeletedProperty(Diff property, StringBuilder stringBuilder) {
+        stringBuilder
+                .append("Property '")
+                .append(property.getName())
+                .append("' was removed\n");
+    }
 
-    CHANGED {
-        @Override
-        public void appendProperty(Diff property, StringBuilder stringBuilder) {
-            stringBuilder
-                    .append("Property '")
-                    .append(property.getName())
-                    .append("' was updated. From ")
-                    .append(Tools.stringify(property.getBefore()))
-                    .append(" to ")
-                    .append(Tools.stringify(property.getAfter()))
-                    .append("\n");
-        }
-    };
-
-    public abstract void appendProperty(Diff property, StringBuilder stringBuilder);
-
+    private static void appendChangedProperty(Diff property, StringBuilder stringBuilder) {
+        stringBuilder
+                .append("Property '")
+                .append(property.getName())
+                .append("' was updated. From ")
+                .append(Tools.stringify(property.getBefore()))
+                .append(" to ")
+                .append(Tools.stringify(property.getAfter()))
+                .append("\n");
+    }
 }
-

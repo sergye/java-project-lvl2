@@ -29,7 +29,6 @@ public class Json {
                 .replace(":", ": ")
                 .replace(",\"", ",\n" + TAB + "\"");
 
-        diff.clear();
         return result;
     }
 }
